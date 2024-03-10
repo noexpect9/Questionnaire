@@ -5,7 +5,10 @@ import styles from './ManageLayout.module.scss'
 const ManageLayout: FC = () => {
   return (
     <div className={styles.container}>
-      <div className={styles.left}>ManageLayouts left</div>
+      <div className={styles.left}>
+        <p>ManageLayouts left</p>
+        <button>创建问卷</button>
+      </div>
       <div className={styles.right}>
         <Outlet />
       </div>

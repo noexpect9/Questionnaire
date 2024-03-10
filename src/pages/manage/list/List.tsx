@@ -56,9 +56,6 @@ const List: FC = (props) => {
           return <QuestionCard key={_id} {...question} />
         })}
       </div>
-      <div className={styles.footer}>
-        footer
-      </div>
     </>
   );
 }

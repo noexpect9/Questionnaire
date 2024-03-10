@@ -1,9 +1,7 @@
-import List from './pages/manage/list/List'
+import { RouterProvider } from "react-router-dom";
+import router from "./router";
 function App() {
-  return (
-    <>
-      <List />
-    </>)
+  return <RouterProvider router={router}></RouterProvider>
 }
 
 export default App;
