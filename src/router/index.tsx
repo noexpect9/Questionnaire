@@ -71,3 +71,15 @@ const router = createBrowserRouter([
 ])
 
 export default router
+
+
+export const LOGIN_PATH = '/login'
+export const REGISTER_PATH = '/register'
+export const HOME_PATH = '/'
+export const MANAGE_PATH = '/manage'
+export const MANAGE_LIST_PATH = '/manage/list'
+export const MANAGE_TRASH_PATH = '/manage/trash'
+export const MANAGE_STAR_PATH = '/manage/star'
+export const QUESTION_PATH = '/question'
+export const QUESTION_EDIT_PATH = '/question/edit/:id'
+export const QUESTION_STAT_PATH = '/question/stat/:id'
