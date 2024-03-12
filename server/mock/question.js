@@ -3,7 +3,7 @@ const Mock = require('mockjs')
 module.exports = [
   {
     url: "/api/question/list",
-    method: 'get',
+    method: 'post',
     response(config) {
       const total = 20 // Adjust the total number of questions as needed
       const items = Mock.mock({

@@ -3,13 +3,15 @@ import { Button, Typography } from "antd";
 import { useNavigate } from "react-router-dom";
 import { MANAGE_LIST_PATH } from "../router";
 import styles from './Home.module.scss'
+import { getHistoryList } from "../api";
 
 const { Title, Paragraph } = Typography
 const Home: FC = () => {
+
   const nav = useNavigate()
   useEffect(() => {
-    fetch('/api/question/list').then(res => res.json()).then(data => {
-      console.log(data)
+    getHistoryList().then(res => {
+      console.log(res)
     })
   })
   return (
