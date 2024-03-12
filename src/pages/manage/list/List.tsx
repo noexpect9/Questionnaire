@@ -3,6 +3,7 @@ import QuestionCard from '../../../components/QuestionCard'
 import styles from './Common.module.scss'
 import { useTitle } from "ahooks";
 import { Typography } from 'antd'
+import ListSearch from "../../../components/ListSearch";
 
 const rawQuestionList = [
   {
@@ -39,7 +40,7 @@ const List: FC = (props) => {
     <>
       <div className={styles.header}>
         <div className={styles.left}>我的问卷</div>
-        <div className={styles.right}>搜索</div>
+        <ListSearch />
       </div>
       <div>
         <Title level={3}>问卷列表</Title>

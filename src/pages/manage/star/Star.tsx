@@ -2,6 +2,7 @@ import React, { FC, useState } from "react";
 import { Typography } from 'antd'
 import styles from '../list/Common.module.scss'
 import QuestionCard from "../../../components/QuestionCard";
+import ListSearch from "../../../components/ListSearch";
 
 const rawQuestionList = [
   {
@@ -36,7 +37,9 @@ const Star: FC = () => {
     <>
       <div className={styles.header}>
         <div className={styles.left}>我的问卷</div>
-        <div className={styles.right}>搜索</div>
+        <div>
+          <ListSearch />
+        </div>
       </div>
       <div>
         <Title level={3}>星标问卷</Title>

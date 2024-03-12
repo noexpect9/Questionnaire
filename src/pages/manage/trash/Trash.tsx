@@ -1,10 +1,11 @@
 import React, { FC, useState } from "react";
 import { useTitle } from "ahooks";
 import styles from '../list/Common.module.scss'
-import { Typography, Input, Table, TableProps, Button, Space, Modal } from 'antd'
+import { Typography, Table, TableProps, Button, Space, Modal } from 'antd'
 import { DeleteOutlined, UndoOutlined } from "@ant-design/icons";
+import ListSearch from "../../../components/ListSearch";
 const { Title } = Typography
-const { Search } = Input
+
 const { confirm } = Modal
 
 interface DataType {
@@ -99,9 +100,7 @@ const Trash: FC = () => {
     <>
       <div className={styles.header}>
         <div className={styles.left}>我的问卷</div>
-        <div className={styles.right}>
-          <Search placeholder="input search text" enterButton />
-        </div>
+        <ListSearch />
       </div>
       <div>
         <Title level={3}>回收站</Title>
