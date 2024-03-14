@@ -1,41 +1,22 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import QuestionCard from '../../../components/QuestionCard'
 import styles from './Common.module.scss'
 import { useTitle } from "ahooks";
 import { Typography } from 'antd'
 import ListSearch from "../../../components/ListSearch";
+import { QuestionItem, getHistoryList, Result } from "../../../api";
 
-const rawQuestionList = [
-  {
-    _id: 1,
-    title: "title1",
-    isPubliced: true,
-    isStar: false,
-    answerCount: 5,
-    createTime: '2022-12-12 12:12:12'
-  },
-  {
-    _id: 2,
-    title: "title2",
-    isPubliced: false,
-    isStar: true,
-    answerCount: 6,
-    createTime: '2022-12-10 12:12:12'
-  },
-  {
-    _id: 3,
-    title: "title3",
-    isPubliced: true,
-    isStar: false,
-    answerCount: 2,
-    createTime: '2022-12-12 12:12:12'
-  }
-]
 const { Title } = Typography
 const List: FC = (props) => {
   useTitle('问卷列表 - 小慕问卷')
-  const [questionList] = useState(rawQuestionList)
 
+  const [questionList, setQuestionList] = useState<QuestionItem[]>([])
+  useEffect(() => {
+    getHistoryList().then((res: Result) => {
+      const { data } = res
+      setQuestionList(data.items)
+    })
+  }, [])
   return (
     <>
       <div className={styles.header}>
@@ -44,7 +25,7 @@ const List: FC = (props) => {
       </div>
       <div>
         <Title level={3}>问卷列表</Title>
-        {questionList.length > 0 && questionList.map(question => {
+        {questionList.length > 0 && questionList.map((question: QuestionItem) => {
           const { _id } = question
           return <QuestionCard key={_id} {...question} />
         })}
