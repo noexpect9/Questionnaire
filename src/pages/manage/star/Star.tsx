@@ -1,38 +1,15 @@
-import React, { FC, useState } from "react";
-import { Typography } from 'antd'
+import React, { FC } from "react";
+import { Spin, Typography } from 'antd'
 import styles from '../list/Common.module.scss'
 import QuestionCard from "../../../components/QuestionCard";
 import ListSearch from "../../../components/ListSearch";
+import useQuestionList from "../../../hooks/useQuestionList";
+import { QuestionItem } from "../../../api";
 
-const rawQuestionList = [
-  {
-    _id: 1,
-    title: "title1",
-    isPubliced: true,
-    isStar: true,
-    answerCount: 5,
-    createTime: '2022-12-12 12:12:12'
-  },
-  {
-    _id: 2,
-    title: "title2",
-    isPubliced: false,
-    isStar: true,
-    answerCount: 6,
-    createTime: '2022-12-10 12:12:12'
-  },
-  {
-    _id: 3,
-    title: "title3",
-    isPubliced: true,
-    isStar: true,
-    answerCount: 2,
-    createTime: '2022-12-12 12:12:12'
-  }
-]
 const { Title } = Typography
 const Star: FC = () => {
-  const [questionList] = useState(rawQuestionList)
+  const { data: result = {} as any, loading } = useQuestionList({ isStar: true })
+  const { items: questionList = [] } = result
   return (
     <>
       <div className={styles.header}>
@@ -42,10 +19,14 @@ const Star: FC = () => {
         </div>
       </div>
       <div>
+        <Spin spinning={loading} fullscreen tip="Loading" />
         <Title level={3}>星标问卷</Title>
-        {questionList.length > 0 && questionList.map(question => {
-          const { _id } = question
-          return <QuestionCard key={_id} {...question} />
+        {questionList.length > 0 && questionList.map((question: QuestionItem) => {
+          if (question.isStar) {
+            const { _id } = question
+            return <QuestionCard key={_id} {...question} />
+          }
+          return null
         })}
       </div>
     </>

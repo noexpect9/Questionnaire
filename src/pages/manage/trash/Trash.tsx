@@ -4,6 +4,8 @@ import styles from '../list/Common.module.scss'
 import { Typography, Table, TableProps, Button, Space, Modal } from 'antd'
 import { DeleteOutlined, UndoOutlined } from "@ant-design/icons";
 import ListSearch from "../../../components/ListSearch";
+import useQuestionList from "../../../hooks/useQuestionList";
+
 const { Title } = Typography
 
 const { confirm } = Modal
@@ -17,12 +19,6 @@ interface DataType {
 }
 
 const columns: TableProps<DataType>['columns'] = [
-  {
-    title: 'ID',
-    dataIndex: '_id',
-    align: 'center',
-    key: '_id',
-  },
   {
     title: '问卷名称',
     dataIndex: 'title',
@@ -52,33 +48,11 @@ const columns: TableProps<DataType>['columns'] = [
   }
 ]
 
-const rawQuestionList: DataType[] = [
-  {
-    _id: 1,
-    title: "title1",
-    isPubliced: true,
-    answerCount: 5,
-    createTime: '2022-12-12 12:12:12'
-  },
-  {
-    _id: 2,
-    title: "title2",
-    isPubliced: false,
-    answerCount: 6,
-    createTime: '2022-12-10 12:12:12'
-  },
-  {
-    _id: 3,
-    title: "title3",
-    isPubliced: true,
-    answerCount: 2,
-    createTime: '2022-12-12 12:12:12'
-  }
-]
-
 const Trash: FC = () => {
   useTitle('回收站 - 小慕问卷')
   const [selectRowId, setSelectRowId] = useState<string[]>([])
+  const { data: result = {} as any, loading } = useQuestionList({ isStar: true })
+  const { items: rawQuestionList = [] } = result
   const rowSelection = {
     onChange: (selectedRowKeys: React.Key[], selectedRows: DataType[]) => {
       setSelectRowId(selectedRowKeys as string[])
@@ -111,7 +85,10 @@ const Trash: FC = () => {
         <Table columns={columns}
           dataSource={rawQuestionList}
           rowKey={record => record._id}
-          rowSelection={{ type: 'checkbox', ...rowSelection }} />
+          rowSelection={{ type: 'checkbox', ...rowSelection }}
+          pagination={{ pageSize: 10, total: rawQuestionList.length, showTotal: (total) => `共 ${total} 条` }}
+          loading={loading}
+        />
       </div>
     </>
 

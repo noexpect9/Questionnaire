@@ -7,7 +7,7 @@ export interface Result {
 
 interface Data {
   total: number
-  items: QuestionItem[]
+  data: QuestionItem[]
   id?: string
 }
 export interface QuestionItem {
@@ -18,10 +18,17 @@ export interface QuestionItem {
   createTime: string
   answerCount: number
 }
-export const getHistoryList = (): Promise<Result> => {
+
+type SearchOption = {
+  keyword: string
+  isStar: boolean
+  isDeleted: boolean
+}
+export const getHistoryList = (opt: Partial<SearchOption>): Promise<Result> => {
   return http.request({
     url: '/question/list',
     method: 'post',
+    data: opt
   })
 }
 
