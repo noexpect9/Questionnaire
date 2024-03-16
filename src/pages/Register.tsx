@@ -1,9 +1,11 @@
 import React, { FC } from "react";
-import { Space, Typography, Button, Form, type FormProps, Input } from 'antd'
+import { Space, Typography, Button, Form, type FormProps, Input, message } from 'antd'
 import { UserAddOutlined } from "@ant-design/icons";
 import styles from './Register.module.scss'
 import { LOGIN_PATH } from "../router";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useRequest } from "ahooks";
+import { register } from "../api/user";
 
 type FieldType = {
   username?: string;
@@ -11,11 +13,27 @@ type FieldType = {
   repassword?: string;
   nickname?: string;
 };
+
 const { Title } = Typography
 const Register: FC = () => {
+  const nav = useNavigate()
+  const { run } = useRequest(async (formData) => {
+    const { username, password, nickname } = formData
+    await register({
+      username,
+      password,
+      nickname
+    })
+  }, {
+    manual: true,
+    onSuccess: () => {
+      message.success('注册成功')
+      nav(LOGIN_PATH)
+    }
+  })
 
   const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
-    console.log('Success:', values);
+    run(values)
   };
 
   const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (errorInfo) => {

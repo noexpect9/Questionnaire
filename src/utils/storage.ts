@@ -24,7 +24,7 @@ class QuestionStorage {
   }
 
   get(key: string) {
-    return JSON.parse(this.storage.getItem(key) || '{}')
+    return JSON.parse(this.storage.getItem(key) as string) || ''
   }
 
   remove(key: string) {

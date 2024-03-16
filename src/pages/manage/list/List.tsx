@@ -15,7 +15,6 @@ const List: FC = (props) => {
   return (
     <>
       <div className={styles.header}>
-        <div className={styles.left}>我的问卷</div>
         <ListSearch />
       </div>
       <div>
@@ -23,11 +22,7 @@ const List: FC = (props) => {
         <Title level={3}>问卷列表</Title>
         {questionList.length > 0 && questionList.map((question: QuestionItem) => {
           const { _id } = question
-          return (
-            <>
-              <QuestionCard key={_id} {...question} />
-            </>
-          )
+          return <QuestionCard key={_id} {...question} />
         })}
       </div>
     </>

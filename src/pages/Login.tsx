@@ -1,10 +1,12 @@
 import React, { FC, useEffect } from "react";
 import styles from './Login.module.scss'
-import { Space, Typography, Button, Form, type FormProps, Input, Checkbox } from 'antd'
+import { Space, Typography, Button, Form, type FormProps, Input, Checkbox, message } from 'antd'
 import { UserAddOutlined } from "@ant-design/icons";
-import { REGISTER_PATH } from "../router";
-import { Link } from "react-router-dom";
+import { MANAGE_LIST_PATH, REGISTER_PATH } from "../router";
+import { Link, useNavigate } from "react-router-dom";
 import { local } from "../utils/storage";
+import { useRequest } from "ahooks";
+import { login } from "../api/user";
 
 type LoginType = {
   username: string
@@ -16,6 +18,7 @@ const USERNAME_STORAGE_KEY = 'username'
 const PASSWORD_STORAGE_KEY = 'password'
 
 const Login: FC = () => {
+  const nav = useNavigate()
   const [form] = Form.useForm()
   useEffect(() => {
     const username = local.get(USERNAME_STORAGE_KEY)
@@ -27,7 +30,19 @@ const Login: FC = () => {
       })
     }
   })
+  const { run } = useRequest(async (username: string, password: string) => {
+    return await login({ username, password })
+  }, {
+    manual: true,
+    onSuccess: (result) => {
+      const { data } = result
+      local.set('token', data.token)
+      message.success('登陆成功')
+      nav(MANAGE_LIST_PATH)
+    }
+  })
   const onFinish: FormProps<LoginType>["onFinish"] = (values) => {
+    run(values.username, values.password)
     const { username, password, remember } = values
     if (remember) {
       local.set(USERNAME_STORAGE_KEY, username)

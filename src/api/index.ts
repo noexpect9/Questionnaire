@@ -9,6 +9,9 @@ interface Data {
   total: number
   data: QuestionItem[]
   id?: string
+  token?: string
+  username?: string
+  nickname?: string
 }
 export interface QuestionItem {
   _id: number

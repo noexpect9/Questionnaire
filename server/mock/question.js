@@ -30,7 +30,7 @@ module.exports = [
             'answerCount': '@integer(1, 3)', // Generate answer paragraphs between 1 and 3 sentences
           },
         ],
-      }).items.slice(0, 80) // Slice the generated questions to match total
+      }).items.slice(0, 10) // Slice the generated questions to match total
 
       return {
         code: 20000,
