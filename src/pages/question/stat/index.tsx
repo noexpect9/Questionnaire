@@ -2,9 +2,10 @@ import React, { FC } from "react";
 import useQuestionDetail from "../../../hooks/useQuestionDetail";
 
 const Stat: FC = () => {
-  const { data } = useQuestionDetail()
+  // const { data } = useQuestionDetail()
   return (
-    <div>{JSON.stringify(data)}</div>
+    <></>
+    // <div>{JSON.stringify(data)}</div>
   )
 }
 

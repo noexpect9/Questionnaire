@@ -4,7 +4,7 @@ import { Typography } from 'antd'
 
 const { Title } = Typography
 const QuestionTitle: FC<TitleProps> = (props: TitleProps) => {
-  const { text, level = 1, isCenter } = { ...TitleDefaultProps, ...props }
+  const { title, level = 1, isCenter } = { ...TitleDefaultProps, ...props }
   // 根据level获取fontsize大小
   const fontSize = (level: Level) => {
     switch (level) {
@@ -19,7 +19,7 @@ const QuestionTitle: FC<TitleProps> = (props: TitleProps) => {
   return (
     <>
       <Title level={level} style={{ textAlign: isCenter ? 'center' : 'start', fontSize: fontSize(level) }} >
-        {text}
+        {title}
       </Title >
     </>
   )

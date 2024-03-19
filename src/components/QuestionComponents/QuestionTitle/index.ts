@@ -4,10 +4,10 @@ import { TitleDefaultProps } from "./type";
 
 export * from './type'
 
-const InputProps = {
-  label: '一行输入框',
-  type: 'input',
-  QuestionTitle,
+const TitleType = {
+  title: '一行输入框',
+  type: 'title',
+  Component: QuestionTitle,
   defaultProps: TitleDefaultProps
 }
-export default InputProps
+export default TitleType

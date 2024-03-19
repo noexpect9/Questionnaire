@@ -4,10 +4,10 @@ import { Typography, Input } from 'antd'
 
 const { Paragraph } = Typography
 const QuestionInput: FC<InputProps> = (props: InputProps) => {
-  const { label, placeholder } = props
+  const { title, placeholder } = props
   return (
     <>
-      <Paragraph strong>{label}</Paragraph>
+      <Paragraph strong>{title}</Paragraph>
       <div>
         <Input placeholder={placeholder}></Input>
       </div>

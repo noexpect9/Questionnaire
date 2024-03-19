@@ -55,21 +55,57 @@ module.exports = [
           createTime: Mock.Random.date('yyyy-MM-dd HH:mm:ss'),
           components: [
             {
-              id: Mock.Random.guid(),
+              fe_id: Mock.Random.guid(),
               type: 'title',
               title: Mock.Random.ctitle(10, 20),
               props: {
                 level: Mock.Random.integer(1, 3),
-                text: Mock.Random.ctitle(10, 20),
+                title: Mock.Random.ctitle(10, 20),
                 isCenter: Mock.Random.boolean()
               }
             },
             {
-              id: Mock.Random.guid(),
+              fe_id: Mock.Random.guid(),
               type: 'input',
               title: Mock.Random.ctitle(10, 20),
               props: {
-                label: Mock.Random.cname(),
+                title: Mock.Random.cname(),
+                placeholder: '请输入',
+              }
+            },
+            {
+              fe_id: Mock.Random.guid(),
+              type: 'input',
+              title: Mock.Random.ctitle(10, 20),
+              props: {
+                title: Mock.Random.cname(),
+                placeholder: '请输入',
+              }
+            },
+            {
+              fe_id: Mock.Random.guid(),
+              type: 'input',
+              title: Mock.Random.ctitle(10, 20),
+              props: {
+                title: Mock.Random.cname(),
+                placeholder: '请输入',
+              }
+            },
+            {
+              fe_id: Mock.Random.guid(),
+              type: 'input',
+              title: Mock.Random.ctitle(10, 20),
+              props: {
+                title: Mock.Random.cname(),
+                placeholder: '请输入',
+              }
+            },
+            {
+              fe_id: Mock.Random.guid(),
+              type: 'input',
+              title: Mock.Random.ctitle(10, 20),
+              props: {
+                title: Mock.Random.cname(),
                 placeholder: '请输入',
               }
             },

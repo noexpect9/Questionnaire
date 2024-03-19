@@ -4,7 +4,7 @@ import styles from './index.module.scss'
 import EditorCanvas from "./EditorCanvas";
 
 const Edit: FC = () => {
-  const { data } = useQuestionDetail()
+  const { loading } = useQuestionDetail()
   return (
     <div className={styles.container}>
       <div>Header</div>
@@ -14,7 +14,7 @@ const Edit: FC = () => {
           <section className={styles.center}>
             <div className={styles["canvas-wrapper"]}>
               <div style={{ height: '1200px' }}>
-                <EditorCanvas />
+                <EditorCanvas loading={loading}/>
               </div>
             </div>
           </section>
