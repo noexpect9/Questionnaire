@@ -1,0 +1,20 @@
+.container {
+  min-height: 100%;
+  background-color: #fff;
+  overflow: hidden;
+
+  .wrapper {
+    margin: 12px;
+    padding: 12px;
+    border: 1px solid #fff;
+    border-radius: 5px;
+
+    &:hover {
+      border-color: #d9d9d9;
+    }
+  }
+
+  .components {
+    pointer-events: none;
+  }
+}

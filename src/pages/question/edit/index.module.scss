@@ -1,0 +1,44 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #f0f2f5;
+
+  .content {
+    flex: auto;
+    padding: 12px 0;
+
+    .content-wrap {
+      margin: 0 25px;
+      display: flex;
+      height: 100%;
+
+      .left {
+        width: 560px;
+        background-color: #fff;
+        padding: 0 12px;
+      }
+
+      .center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex: 1;
+        padding: 0 12px;
+        overflow: hidden;
+        .canvas-wrapper {
+          background-color: aqua;
+          width: 700px;
+          height: 1050px;
+          overflow: auto;
+        }
+      }
+
+      .right {
+        width: 560px;
+        background-color: #fff;
+        padding: 0 12px;
+      }
+    }
+  }
+}

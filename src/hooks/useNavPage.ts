@@ -11,8 +11,6 @@ function useNavPage(wait: boolean) {
     if (wait) return
     if (username) {
       if (pathname === HOME_PATH || pathname === REGISTER_PATH) {
-        console.log(111);
-        
         nav(MANAGE_LIST_PATH)
       }
     }
