@@ -33,8 +33,17 @@ export const componentsSlice = createSlice({
     changeSeletedId(state: ComponentsStateType, action: PayloadAction<string>) {
       state.selectedId = action.payload
     },
-    addComponent(state, action: PayloadAction<ComponentsInfoType>) {
-      state.componentList.push(action.payload)
+    addComponent(state: ComponentsStateType, action: PayloadAction<ComponentsInfoType>) {
+      const newComp = action.payload
+      const { selectedId, componentList } = state
+      const i = componentList.findIndex(item => item.fe_id === selectedId)
+      // 未找到selectedId, 未选中状态
+      if (i < 0) {
+        state.componentList.push(newComp)
+      } else {
+        // 找到selectedId 插入到后面
+        state.componentList.splice(i + 1, 0, newComp)
+      }
     }
   }
 })

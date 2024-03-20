@@ -6,7 +6,7 @@ export * from './type'
 
 // Title组件配置
 const TitleType = {
-  title: '一行输入框',
+  title: 'Title组件配置',
   type: 'title',
   Component: QuestionTitle,
   defaultProps: TitleDefaultProps

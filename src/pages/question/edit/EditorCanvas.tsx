@@ -11,7 +11,7 @@ type PropsType = {
   loading?: boolean
 }
 // 根据传入的组件配置生成指定组件
-function generateComponent(component: ComponentsInfoType) {
+export function generateComponent(component: ComponentsInfoType) {
   // 从默认组件配置中获取组件对应的type和props参数
   const { type, props } = component
   // 获取组件对应的配置对象

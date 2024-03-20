@@ -14,11 +14,23 @@ export type ComponentConfigType = {
 }
 
 // 组件配置
-export const ComponentConfig: ComponentConfigType[] = [
+export const componentConfigData: ComponentConfigType[] = [
   QuestionInput, QuestionTitle
+]
+
+// 组件类型分组
+export const componentTypeGrounp = [
+  {
+    groupName: '文本显示',
+    components: [QuestionTitle]
+  },
+  {
+    groupName: '用户输入',
+    components: [QuestionInput]
+  }
 ]
 
 // 通过type获取组件对应的配置
 export default function getComponentConfig(type: string) {
-  return ComponentConfig.find(item => item.type === type)
+  return componentConfigData.find(item => item.type === type)
 }
