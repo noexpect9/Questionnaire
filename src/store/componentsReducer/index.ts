@@ -10,10 +10,14 @@ export interface ComponentsInfoType {
 }
 
 export interface ComponentsStateType {
+  // 用于记录当前选中的组件
+  selectedId: string
+  // 组件列表
   componentList: ComponentsInfoType[]
 }
 
 const INIT_STATE: ComponentsStateType = {
+  selectedId: '',
   componentList: []
 }
 
@@ -25,11 +29,15 @@ export const componentsSlice = createSlice({
     resetComponents: (state: ComponentsStateType, action: PayloadAction<ComponentsStateType>) => {
       return action.payload
     },
+    // 修改selectedId
+    changeSeletedId(state: ComponentsStateType, action: PayloadAction<string>) {
+      state.selectedId = action.payload
+    },
     addComponent(state, action: PayloadAction<ComponentsInfoType>) {
       state.componentList.push(action.payload)
     }
   }
 })
 
-export const { resetComponents, addComponent } = componentsSlice.actions
+export const { resetComponents, changeSeletedId, addComponent } = componentsSlice.actions
 export default componentsSlice.reducer

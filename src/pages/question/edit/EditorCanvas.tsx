@@ -1,10 +1,15 @@
-import { FC } from 'react'
+import { FC, MouseEvent } from 'react'
 import styles from './EditorCanvas.module.scss'
 import useComponentsInfo from '../../../hooks/useComponentsInfo'
 import { Spin } from 'antd'
 import getComponentConfig from '../../../components/QuestionComponents'
-import { ComponentsInfoType } from '../../../store/componentsReducer'
+import { ComponentsInfoType, changeSeletedId } from '../../../store/componentsReducer'
+import { useDispatch } from 'react-redux'
+import classNames from 'classnames'
 
+type PropsType = {
+  loading?: boolean
+}
 // 根据传入的组件配置生成指定组件
 function generateComponent(component: ComponentsInfoType) {
   // 从默认组件配置中获取组件对应的type和props参数
@@ -18,19 +23,30 @@ function generateComponent(component: ComponentsInfoType) {
   return <Component {...props} />
 }
 
-type PropsType = {
-  loading?: boolean
-}
 const EditorCanvas: FC<PropsType> = ({ loading }) => {
+  const dispatch = useDispatch()
+  function handleComClick(e: MouseEvent ,id: string) {
+    // 阻止冒泡 取消已选中的组件
+    e.stopPropagation()
+    dispatch(changeSeletedId(id))
+  }
   // 从redux中获取组件列表
-  const { componentList } = useComponentsInfo()
+  const { componentList, selectedId } = useComponentsInfo()
   if (loading) return <Spin fullscreen tip="Loading" />
   return (
     <div className={styles.container}>
       {componentList.map(item => {
         // 从组件列表中获取每个组件的id
         const { fe_id } = item
-        return <div key={fe_id} className={styles.wrapper}>
+        // 拼接class
+        const wrapperDefaultClass = styles.wrapper
+        const selectedClass = styles.selected
+        const wrapperClass = classNames({
+          [wrapperDefaultClass]: true,
+          [selectedClass]: fe_id === selectedId
+        })
+
+        return <div key={fe_id} className={wrapperClass} onClick={e => handleComClick(e, fe_id)}>
           <div className={styles.components}>
             {generateComponent(item)}
           </div>

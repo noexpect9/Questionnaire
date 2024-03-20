@@ -21,8 +21,15 @@ function useQuestionDetail() {
     if (!data) return
     // 从请求数据中解构出此问卷存储的components
     const { components: componentList = [] } = data as any
+
+    // 获取默认selectedId
+    let selectedId
+    if (componentList.length > 0) {
+      selectedId = componentList[0].fe_id
+    }
+
     // 将数据存入redux
-    dispatch(resetComponents({ componentList }))
+    dispatch(resetComponents({ componentList, selectedId }))
   }, [data, dispatch])
 
   useEffect(() => {
