@@ -18,6 +18,7 @@ export const ComponentConfig: ComponentConfigType[] = [
   QuestionInput, QuestionTitle
 ]
 
+// 通过type获取组件对应的配置
 export default function getComponentConfig(type: string) {
   return ComponentConfig.find(item => item.type === type)
 }

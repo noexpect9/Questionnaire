@@ -4,6 +4,7 @@ import { TitleDefaultProps } from "./type";
 
 export * from './type'
 
+// Title组件配置
 const TitleType = {
   title: '一行输入框',
   type: 'title',

@@ -3,6 +3,7 @@ import { InputDefaultProps } from "./type";
 
 export * from './type'
 
+// Input组件配置
 const InputProps = {
   title: '一行输入框',
   type: 'input',

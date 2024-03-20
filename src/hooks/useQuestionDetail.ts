@@ -8,7 +8,7 @@ import { resetComponents } from "../store/componentsReducer"
 function useQuestionDetail() {
   const { id = '' } = useParams()
   const dispatch = useDispatch()
-
+  // 请求问卷详情
   const { data, loading, error, run } = useRequest(async (id: string) => {
     if (!id) throw new Error('此问卷缺少id')
     const res = await findById(id)
@@ -19,6 +19,7 @@ function useQuestionDetail() {
 
   useEffect(() => {
     if (!data) return
+    // 从请求数据中解构出此问卷存储的components
     const { components: componentList = [] } = data as any
     // 将数据存入redux
     dispatch(resetComponents({ componentList }))

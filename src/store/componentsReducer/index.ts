@@ -1,6 +1,7 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { ComponentsPropsType } from "../../components/QuestionComponents";
 
+// 每个组件需要的固定属性
 export interface ComponentsInfoType {
   fe_id: string
   type: string
