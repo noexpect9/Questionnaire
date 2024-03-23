@@ -6,6 +6,7 @@ import getComponentConfig from '../../../components/QuestionComponents'
 import { ComponentsInfoType, changeSeletedId } from '../../../store/componentsReducer'
 import { useDispatch } from 'react-redux'
 import classNames from 'classnames'
+import useBindCanvasKeyPress from '../../../hooks/useBindCanvasKeyPress'
 
 type PropsType = {
   loading?: boolean
@@ -32,6 +33,8 @@ const EditorCanvas: FC<PropsType> = ({ loading }) => {
   }
   // 从redux中获取组件列表
   const { componentList, selectedId } = useComponentsInfo()
+  // 快捷键操作
+  useBindCanvasKeyPress()
   if (loading) return <Spin fullscreen tip="Loading" />
   return (
     <div className={styles.container}>

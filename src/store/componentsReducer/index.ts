@@ -112,9 +112,25 @@ export const componentsSlice = createSlice({
         // 找到selectedId 插入到后面
         state.componentList.splice(i + 1, 0, copiedComponent)
       }
-    }
+    },
+    // 选中上一个
+    selectPrevComponent(state: ComponentsStateType) {
+      const { selectedId, componentList } = state
+      const i = componentList.findIndex(item => item.fe_id === selectedId)
+      // 已经选中第一个 无法选中上一个
+      if (i <= 0) return
+      state.selectedId = componentList[i - 1].fe_id
+    },
+    // 选中下一个
+    selectNextComponent(state: ComponentsStateType) {
+      const { selectedId, componentList } = state
+      const i = componentList.findIndex(item => item.fe_id === selectedId)
+      // 已经选中最后一个 无法选中下一个
+      if (i >= componentList.length - 1) return
+      state.selectedId = componentList[i + 1].fe_id
+    },
   }
 })
 
-export const { resetComponents, changeSeletedId, addComponent, changeComponentProps, deleteSelectedComponent, toggleComponentHidden, toggleComponentLock, copyComponent, pasteComponent } = componentsSlice.actions
+export const { resetComponents, changeSeletedId, addComponent, changeComponentProps, deleteSelectedComponent, toggleComponentHidden, toggleComponentLock, copyComponent, pasteComponent, selectPrevComponent, selectNextComponent } = componentsSlice.actions
 export default componentsSlice.reducer

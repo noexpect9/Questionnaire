@@ -1,9 +1,9 @@
 import { FC } from 'react'
 import QuestionInput, { InputProps } from './QuestionInput'
 import QuestionTitle, { TitleProps } from './QuestionTitle'
+import QuestionParagraph, { ParagraphProps } from './QuestionParagraph'
 
-
-export type ComponentsPropsType = InputProps & TitleProps
+export type ComponentsPropsType = InputProps & TitleProps & ParagraphProps
 
 // component配置
 export type ComponentConfigType = {
@@ -16,14 +16,14 @@ export type ComponentConfigType = {
 
 // 组件配置
 export const componentConfigData: ComponentConfigType[] = [
-  QuestionInput, QuestionTitle
+  QuestionInput, QuestionTitle, QuestionParagraph
 ]
 
 // 组件类型分组
 export const componentTypeGrounp = [
   {
     groupName: '文本显示',
-    components: [QuestionTitle]
+    components: [QuestionTitle, QuestionParagraph]
   },
   {
     groupName: '用户输入',
