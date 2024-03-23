@@ -6,6 +6,7 @@ export interface TitleProps {
   level?: Level;
   isCenter?: boolean
   onChange?: (value: TitleProps) => void
+  disabled?: boolean
 }
 
 export const TitleDefaultProps: TitleProps = {

@@ -3,7 +3,7 @@ import { InputProps } from "./type";
 import { Form, Input } from "antd";
 
 const PropComponent: FC<InputProps> = (props: InputProps) => {
-  const { title, placeholder, onChange } = props
+  const { title, placeholder, onChange, disabled } = props
   const [form] = Form.useForm()
 
   useEffect(() => {
@@ -15,7 +15,7 @@ const PropComponent: FC<InputProps> = (props: InputProps) => {
   }
 
   return <>
-    <Form layout="vertical" initialValues={{ title, placeholder }} form={form} onChange={handleChange}>
+    <Form layout="vertical" initialValues={{ title, placeholder }} form={form} onChange={handleChange} disabled={disabled}>
       <Form.Item label={title} name="title" rules={[{ required: true }]}>
         <Input />
       </Form.Item>

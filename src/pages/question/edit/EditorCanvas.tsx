@@ -25,7 +25,7 @@ export function generateComponent(component: ComponentsInfoType) {
 
 const EditorCanvas: FC<PropsType> = ({ loading }) => {
   const dispatch = useDispatch()
-  function handleComClick(e: MouseEvent ,id: string) {
+  function handleComClick(e: MouseEvent, id: string) {
     // 阻止冒泡 取消已选中的组件
     e.stopPropagation()
     dispatch(changeSeletedId(id))
@@ -35,15 +35,17 @@ const EditorCanvas: FC<PropsType> = ({ loading }) => {
   if (loading) return <Spin fullscreen tip="Loading" />
   return (
     <div className={styles.container}>
-      {componentList.map(item => {
+      {componentList.filter(item => !item.isHidden).map(item => {
         // 从组件列表中获取每个组件的id
-        const { fe_id } = item
+        const { fe_id, isLocked } = item
         // 拼接class
         const wrapperDefaultClass = styles.wrapper
         const selectedClass = styles.selected
+        const lockedClass = styles.locked
         const wrapperClass = classNames({
           [wrapperDefaultClass]: true,
-          [selectedClass]: fe_id === selectedId
+          [selectedClass]: fe_id === selectedId,
+          [lockedClass]: isLocked
         })
 
         return <div key={fe_id} className={wrapperClass} onClick={e => handleComClick(e, fe_id)}>

@@ -10,7 +10,8 @@ const ComponentProp: FC = () => {
   // 当前选中的组件
   const { selectedComponent } = useComponentsInfo()
   if (selectedComponent == null) return <Empty description="请选择组件" />
-  const { type, props } = selectedComponent
+  // 选中组件config
+  const { type, props, isLocked } = selectedComponent
   const componentConfig = getComponentConfig(type)
   if (componentConfig == null) return <Empty description="请选择组件" />
   const { PropComponent } = componentConfig
@@ -22,7 +23,7 @@ const ComponentProp: FC = () => {
     const { fe_id } = selectedComponent
     dispatch(changeComponentProps({ fe_id, newProps }))
   }
-  return <PropComponent {...props} onChange={handleProp} />
+  return <PropComponent {...props} onChange={handleProp} disabled={isLocked} />
 }
 
 export default ComponentProp

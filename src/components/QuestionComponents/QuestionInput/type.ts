@@ -2,6 +2,7 @@ export interface InputProps {
   title?: string
   placeholder?: string
   onChange?: (value: InputProps) => void
+  disabled?: boolean
 }
 
 export const InputDefaultProps: InputProps = {

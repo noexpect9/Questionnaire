@@ -11,7 +11,7 @@ const options = [
 ]
 
 const PropComponent: FC<TitleProps> = (props: TitleProps) => {
-  const { title, level, isCenter, onChange } = props
+  const { title, level, isCenter, onChange, disabled } = props
   const [form] = Form.useForm()
 
   useEffect(() => {
@@ -22,7 +22,7 @@ const PropComponent: FC<TitleProps> = (props: TitleProps) => {
   }
 
   return <>
-    <Form layout="vertical" initialValues={{ title, level, isCenter }} form={form} onChange={handleChange}>
+    <Form layout="vertical" initialValues={{ title, level, isCenter }} form={form} onChange={handleChange} disabled={disabled}>
       <Form.Item label='标题内容' name="title" rules={[{ required: true }]}>
         <Input />
       </Form.Item>

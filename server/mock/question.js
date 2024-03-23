@@ -58,6 +58,7 @@ module.exports = [
               fe_id: Mock.Random.guid(),
               type: 'title',
               title: Mock.Random.ctitle(10, 20),
+              isHidden: false,
               props: {
                 level: Mock.Random.integer(1, 3),
                 title: Mock.Random.ctitle(10, 20),
@@ -68,6 +69,8 @@ module.exports = [
               fe_id: Mock.Random.guid(),
               type: 'input',
               title: Mock.Random.ctitle(10, 20),
+              isHidden: false,
+              isLocked: false,
               props: {
                 title: Mock.Random.cname(),
                 placeholder: '请输入',
@@ -77,6 +80,8 @@ module.exports = [
               fe_id: Mock.Random.guid(),
               type: 'input',
               title: Mock.Random.ctitle(10, 20),
+              isHidden: false,
+              isLocked: false,
               props: {
                 title: Mock.Random.cname(),
                 placeholder: '请输入',
@@ -86,6 +91,7 @@ module.exports = [
               fe_id: Mock.Random.guid(),
               type: 'input',
               title: Mock.Random.ctitle(10, 20),
+              isHidden: false,
               props: {
                 title: Mock.Random.cname(),
                 placeholder: '请输入',
@@ -95,6 +101,8 @@ module.exports = [
               fe_id: Mock.Random.guid(),
               type: 'input',
               title: Mock.Random.ctitle(10, 20),
+              isHidden: false,
+              isLocked: false,
               props: {
                 title: Mock.Random.cname(),
                 placeholder: '请输入',
@@ -104,6 +112,8 @@ module.exports = [
               fe_id: Mock.Random.guid(),
               type: 'input',
               title: Mock.Random.ctitle(10, 20),
+              isHidden: false,
+              isLocked: false,
               props: {
                 title: Mock.Random.cname(),
                 placeholder: '请输入',

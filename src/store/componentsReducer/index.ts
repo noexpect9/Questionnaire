@@ -7,6 +7,8 @@ export interface ComponentsInfoType {
   fe_id: string
   type: string
   title: string
+  isHidden?: boolean
+  isLocked?: boolean
   props: ComponentsPropsType
 }
 
@@ -62,9 +64,30 @@ export const componentsSlice = createSlice({
 
       const i = componentList.findIndex(item => item.fe_id === selectedId)
       componentList.splice(i, 1)
+    },
+    // 切换组件显示/隐藏
+    toggleComponentHidden(state: ComponentsStateType, action: PayloadAction<{ fe_id: string, isHidden: boolean }>) {
+      const { fe_id, isHidden } = action.payload
+      let newSelectedId = ''
+      // 如果是显示
+      if (isHidden) {
+        // 计算隐藏后的新的selectedId
+        newSelectedId = getNextSelectedId(state.componentList, state.selectedId)
+      } else {
+        newSelectedId = fe_id
+      }
+      state.selectedId = newSelectedId
+      const i = state.componentList.findIndex(item => item.fe_id === fe_id)
+      state.componentList[i].isHidden = !state.componentList[i].isHidden
+    },
+    // 锁定/解锁
+    toggleComponentLock(state: ComponentsStateType, action: PayloadAction<{ fe_id: string }>) {
+      const { fe_id } = action.payload
+      const i = state.componentList.findIndex(item => item.fe_id === fe_id)
+      state.componentList[i].isLocked = !state.componentList[i].isLocked
     }
   }
 })
 
-export const { resetComponents, changeSeletedId, addComponent, changeComponentProps, deleteSelectedComponent } = componentsSlice.actions
+export const { resetComponents, changeSeletedId, addComponent, changeComponentProps, deleteSelectedComponent, toggleComponentHidden, toggleComponentLock } = componentsSlice.actions
 export default componentsSlice.reducer
