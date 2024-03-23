@@ -10,6 +10,7 @@ export type ComponentConfigType = {
   title: string
   type: string
   Component: FC<ComponentsPropsType>
+  PropComponent: FC<ComponentsPropsType>
   defaultProps: ComponentsPropsType
 }
 

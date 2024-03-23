@@ -6,9 +6,12 @@ import { ComponentsStateType } from "../store/componentsReducer";
 function useComponentsInfo() {
   const components = useSelector<StateType>((state: StateType) => state.components) as ComponentsStateType
   const { componentList = [], selectedId = '' } = components
+  // 获取当前选中的组件
+  const selectedComponent = componentList.find(item => item.fe_id === selectedId)
   return {
     componentList,
-    selectedId
+    selectedId,
+    selectedComponent
   }
 }
 
