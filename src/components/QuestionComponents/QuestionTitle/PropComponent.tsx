@@ -11,15 +11,18 @@ const options = [
 ]
 
 const PropComponent: FC<TitleProps> = (props: TitleProps) => {
-  const { title, level, isCenter } = props
+  const { title, level, isCenter, onChange } = props
   const [form] = Form.useForm()
 
   useEffect(() => {
     form.setFieldsValue({ title, level, isCenter })
   }, [title, level, isCenter, form])
+  const handleChange = () => {
+    onChange && onChange(form.getFieldsValue())
+  }
 
   return <>
-    <Form layout="vertical" initialValues={{ title, level, isCenter }} form={form}>
+    <Form layout="vertical" initialValues={{ title, level, isCenter }} form={form} onChange={handleChange}>
       <Form.Item label='标题内容' name="title" rules={[{ required: true }]}>
         <Input />
       </Form.Item>

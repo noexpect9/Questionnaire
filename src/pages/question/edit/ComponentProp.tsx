@@ -1,9 +1,12 @@
 import { FC } from "react";
 import useComponentsInfo from "../../../hooks/useComponentsInfo";
 import { Empty } from "antd";
-import getComponentConfig from "../../../components/QuestionComponents";
+import getComponentConfig, { ComponentsPropsType } from "../../../components/QuestionComponents";
+import { useDispatch } from "react-redux";
+import { changeComponentProps } from "../../../store/componentsReducer";
 
 const ComponentProp: FC = () => {
+  const dispatch = useDispatch()
   // 当前选中的组件
   const { selectedComponent } = useComponentsInfo()
   if (selectedComponent == null) return <Empty description="请选择组件" />
@@ -11,7 +14,15 @@ const ComponentProp: FC = () => {
   const componentConfig = getComponentConfig(type)
   if (componentConfig == null) return <Empty description="请选择组件" />
   const { PropComponent } = componentConfig
-  return <PropComponent {...props} />
+
+  // 修改组件属性
+  const handleProp = (newProps: ComponentsPropsType) => {
+    // 如果选中的组件没有属性 返回
+    if (selectedComponent == null) return
+    const { fe_id } = selectedComponent
+    dispatch(changeComponentProps({ fe_id, newProps }))
+  }
+  return <PropComponent {...props} onChange={handleProp} />
 }
 
 export default ComponentProp
