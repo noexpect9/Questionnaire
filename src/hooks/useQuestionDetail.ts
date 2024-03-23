@@ -29,7 +29,7 @@ function useQuestionDetail() {
     }
 
     // 将数据存入redux
-    dispatch(resetComponents({ componentList, selectedId }))
+    dispatch(resetComponents({ componentList, selectedId, copiedComponent: null }))
   }, [data, dispatch])
 
   useEffect(() => {
