@@ -32,11 +32,11 @@ export const componentTypeGrounp = [
   },
   {
     groupName: '用户输入',
-    components: [QuestionInput, QuestionDatePicker]
+    components: [QuestionInput]
   },
   {
     groupName: '用户选择',
-    components: [QuestionRadio, QuestionCheckBox]
+    components: [QuestionDatePicker, QuestionRadio, QuestionCheckBox]
   }
 ]
 

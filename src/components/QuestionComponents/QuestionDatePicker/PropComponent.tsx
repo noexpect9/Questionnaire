@@ -5,9 +5,6 @@ import { DatePicker, Form } from "antd";
 const PropComponent: FC<DatePickerProps> = (props: DatePickerProps) => {
   const { title, placeholder, onChange, disabled } = props
   const [form] = Form.useForm()
-  const pickChange = (date: any) => {
-    console.log(date);
-  }
 
   useEffect(() => {
     form.setFieldsValue({ title, placeholder })
@@ -16,7 +13,7 @@ const PropComponent: FC<DatePickerProps> = (props: DatePickerProps) => {
   return <>
     <Form layout="vertical" initialValues={{ title, placeholder }} disabled={disabled} form={form}>
       <Form.Item label='日期选择' rules={[{ required: true }]}>
-        <DatePicker onChange={pickChange}/>
+        <DatePicker placeholder={placeholder} showTime style={{ width: '100%' }}></DatePicker>
       </Form.Item>
     </Form>
   </>

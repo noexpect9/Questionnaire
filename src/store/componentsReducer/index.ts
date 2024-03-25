@@ -129,8 +129,14 @@ export const componentsSlice = createSlice({
       if (i >= componentList.length - 1) return
       state.selectedId = componentList[i + 1].fe_id
     },
+    // 修改标题
+    changeTitle(state: ComponentsStateType, action: PayloadAction<{ fe_id: string, title: string }>) {
+      const { fe_id, title } = action.payload
+      const i = state.componentList.findIndex(item => item.fe_id === fe_id)
+      state.componentList[i].title = title
+    }
   }
 })
 
-export const { resetComponents, changeSeletedId, addComponent, changeComponentProps, deleteSelectedComponent, toggleComponentHidden, toggleComponentLock, copyComponent, pasteComponent, selectPrevComponent, selectNextComponent } = componentsSlice.actions
+export const { resetComponents, changeSeletedId, addComponent, changeComponentProps, deleteSelectedComponent, toggleComponentHidden, toggleComponentLock, copyComponent, pasteComponent, selectPrevComponent, selectNextComponent, changeTitle } = componentsSlice.actions
 export default componentsSlice.reducer

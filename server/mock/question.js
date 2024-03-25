@@ -72,52 +72,53 @@ module.exports = [
               isHidden: false,
               isLocked: false,
               props: {
-                title: Mock.Random.cname(),
+                title: '这是一个输入框',
                 placeholder: '请输入',
               }
             },
             {
               fe_id: Mock.Random.guid(),
-              type: 'input',
+              type: 'radio',
               title: Mock.Random.ctitle(10, 20),
               isHidden: false,
               isLocked: false,
               props: {
-                title: Mock.Random.cname(),
+                title: '这是一个radio',
                 placeholder: '请输入',
-              }
+                options: [
+                  {
+                    text: '选项1',
+                    value: '1',
+                  },
+                  {
+                    text: '选项2',
+                    value: '2',
+                  },
+                ],
+              },
             },
             {
               fe_id: Mock.Random.guid(),
-              type: 'input',
-              title: Mock.Random.ctitle(10, 20),
-              isHidden: false,
-              props: {
-                title: Mock.Random.cname(),
-                placeholder: '请输入',
-              }
-            },
-            {
-              fe_id: Mock.Random.guid(),
-              type: 'input',
-              title: Mock.Random.ctitle(10, 20),
-              isHidden: false,
-              isLocked: false,
-              props: {
-                title: Mock.Random.cname(),
-                placeholder: '请输入',
-              }
-            },
-            {
-              fe_id: Mock.Random.guid(),
-              type: 'input',
+              type: 'checkBox',
               title: Mock.Random.ctitle(10, 20),
               isHidden: false,
               isLocked: false,
               props: {
-                title: Mock.Random.cname(),
+                title: '这是一个checkbox',
                 placeholder: '请输入',
-              }
+                list: [
+                  {
+                    text: '选项1',
+                    value: '1',
+                    checked: false,
+                  },
+                  {
+                    text: '选项2',
+                    value: '2',
+                    checked: false,
+                  },
+                ],
+              },
             },
           ]
         },
