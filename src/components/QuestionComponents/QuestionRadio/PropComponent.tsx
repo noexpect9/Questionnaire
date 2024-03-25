@@ -11,8 +11,6 @@ const PropComponent: FC<RadioProps> = (props: RadioProps) => {
   })
 
   const handleChange = () => {
-    console.log('form', form.getFieldsValue());
-    
     if (onChange == null) return
     const newOptions = form.getFieldsValue()
     const { options } = newOptions
@@ -36,7 +34,7 @@ const PropComponent: FC<RadioProps> = (props: RadioProps) => {
         {(fields, { add, remove }) => (
           <>
             {fields.map(({ key, name }, index) => {
-              return <Space key={key} align="baseline">
+              return <Space key={key} align="baseline" style={{ width: '100%' }}>
                 <Form.Item name={[name, 'text']} rules={[{ required: true }, {
                   validator: (_, value) => {
                     const { options = [] } = form.getFieldsValue()
