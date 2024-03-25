@@ -7,7 +7,7 @@ const QuestionDatePicker: FC<DatePickerProps> = (props: DatePickerProps) => {
   const { title, placeholder } = { ...DatePickerDefaultProps, ...props }
   return <>
     <Paragraph strong>{title}</Paragraph>
-    <DatePicker placeholder={placeholder} title={title}></DatePicker>
+    <DatePicker placeholder={placeholder}></DatePicker>
   </>
 };
 export default QuestionDatePicker
