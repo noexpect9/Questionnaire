@@ -10,7 +10,7 @@ const QuestionParagraph: FC<ParagraphProps> = (props: ParagraphProps) => {
 
   const textList = title.split('\n')
   const t = textList.map((item, index) => {
-    return <span>{index > 0 && <br />}{item}</span>
+    return <span key={index}>{index > 0 && <br />}{item}</span>
   })
 
   return <Paragraph style={{ textAlign: isCenter ? 'center' : 'start' }}>

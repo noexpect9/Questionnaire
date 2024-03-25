@@ -4,9 +4,10 @@ import QuestionTitle, { TitleProps } from './QuestionTitle'
 import QuestionParagraph, { ParagraphProps } from './QuestionParagraph'
 import QuestionDatePicker, { DatePickerProps } from './QuestionDatePicker'
 import QuestionInfo, { InfoProps } from './QuestionInfo'
+import QuestionRadio, { RadioProps } from './QuestionRadio'
 
 // 获取所有组件类型
-export type ComponentsPropsType = InputProps & TitleProps & ParagraphProps & DatePickerProps & InfoProps
+export type ComponentsPropsType = InputProps & TitleProps & ParagraphProps & DatePickerProps & InfoProps & RadioProps
 
 // component配置
 export type ComponentConfigType = {
@@ -19,7 +20,7 @@ export type ComponentConfigType = {
 
 // 组件配置
 export const componentConfigData: ComponentConfigType[] = [
-  QuestionInput, QuestionTitle, QuestionParagraph, QuestionDatePicker, QuestionInfo
+  QuestionInput, QuestionTitle, QuestionParagraph, QuestionDatePicker, QuestionInfo, QuestionRadio
 ]
 
 // 组件类型分组
@@ -31,6 +32,10 @@ export const componentTypeGrounp = [
   {
     groupName: '用户输入',
     components: [QuestionInput, QuestionDatePicker]
+  },
+  {
+    groupName: '用户选择',
+    components: [QuestionRadio]
   }
 ]
 

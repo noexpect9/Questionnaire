@@ -8,7 +8,7 @@ const QuestionInfo: FC<InfoProps> = (props: InfoProps) => {
 
   const descList = desc.split('\n')
   const t = descList.map((item, index) => {
-    return <span>{index > 0 && <br />}{item}</span>
+    return <span key={index}>{index > 0 && <br />}{item}</span>
   })
   return (
     <div style={{ textAlign: 'center' }}>
