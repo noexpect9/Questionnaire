@@ -2,6 +2,7 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { ComponentsPropsType } from "../../components/QuestionComponents";
 import { getNextSelectedId } from './utils'
 import { cloneDeep } from "lodash";
+import { arrayMove } from "@dnd-kit/sortable";
 
 // 每个组件需要的固定属性
 export interface ComponentsInfoType {
@@ -134,9 +135,15 @@ export const componentsSlice = createSlice({
       const { fe_id, title } = action.payload
       const i = state.componentList.findIndex(item => item.fe_id === fe_id)
       state.componentList[i].title = title
+    },
+    // 移动组件
+    moveComponent(state: ComponentsStateType, action: PayloadAction<{ oldIndex: number, newIndex: number }>) {
+      const { oldIndex, newIndex } = action.payload
+      const { componentList } = state
+      state.componentList = arrayMove(componentList, oldIndex, newIndex)
     }
   }
 })
 
-export const { resetComponents, changeSeletedId, addComponent, changeComponentProps, deleteSelectedComponent, toggleComponentHidden, toggleComponentLock, copyComponent, pasteComponent, selectPrevComponent, selectNextComponent, changeTitle } = componentsSlice.actions
+export const { resetComponents, changeSeletedId, addComponent, changeComponentProps, deleteSelectedComponent, toggleComponentHidden, toggleComponentLock, copyComponent, pasteComponent, selectPrevComponent, selectNextComponent, changeTitle, moveComponent } = componentsSlice.actions
 export default componentsSlice.reducer

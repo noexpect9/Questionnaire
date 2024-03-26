@@ -3,10 +3,12 @@ import styles from './EditorCanvas.module.scss'
 import useComponentsInfo from '../../../hooks/useComponentsInfo'
 import { Spin } from 'antd'
 import getComponentConfig from '../../../components/QuestionComponents'
-import { ComponentsInfoType, changeSeletedId } from '../../../store/componentsReducer'
+import { ComponentsInfoType, changeSeletedId, moveComponent } from '../../../store/componentsReducer'
 import { useDispatch } from 'react-redux'
 import classNames from 'classnames'
 import useBindCanvasKeyPress from '../../../hooks/useBindCanvasKeyPress'
+import SortableContainer from "../../../components/DragSortable/SortableContainer";
+import SortableItem from "../../../components/DragSortable/SortableItem";
 
 type PropsType = {
   loading?: boolean
@@ -36,28 +38,41 @@ const EditorCanvas: FC<PropsType> = ({ loading }) => {
   // 快捷键操作
   useBindCanvasKeyPress()
   if (loading) return <Spin fullscreen tip="Loading" />
-  return (
-    <div className={styles.container}>
-      {componentList.filter(item => !item.isHidden).map(item => {
-        // 从组件列表中获取每个组件的id
-        const { fe_id, isLocked } = item
-        // 拼接class
-        const wrapperDefaultClass = styles.wrapper
-        const selectedClass = styles.selected
-        const lockedClass = styles.locked
-        const wrapperClass = classNames({
-          [wrapperDefaultClass]: true,
-          [selectedClass]: fe_id === selectedId,
-          [lockedClass]: isLocked
-        })
 
-        return <div key={fe_id} className={wrapperClass} onClick={e => handleComClick(e, fe_id)}>
-          <div className={styles.components}>
-            {generateComponent(item)}
-          </div>
-        </div>
-      })}
-    </div>
+  // 需要补充id
+  const componentListWithId = componentList.map(item => ({ ...item, id: item.fe_id }))
+  // 拖拽排序结束
+  const handleDragEnd = (oldIndex: number, newIndex: number) => {
+    dispatch(moveComponent({ oldIndex, newIndex }))
+  }
+  return (
+    <SortableContainer items={componentListWithId} onDragEnd={handleDragEnd}>
+      <div className={styles.container}>
+        {componentList.filter(item => !item.isHidden).map(item => {
+          // 从组件列表中获取每个组件的id
+          const { fe_id, isLocked } = item
+          // 拼接class
+          const wrapperDefaultClass = styles.wrapper
+          const selectedClass = styles.selected
+          const lockedClass = styles.locked
+          const wrapperClass = classNames({
+            [wrapperDefaultClass]: true,
+            [selectedClass]: fe_id === selectedId,
+            [lockedClass]: isLocked
+          })
+
+          return (
+            <SortableItem key={fe_id} id={fe_id}>
+              <div className={wrapperClass} onClick={e => handleComClick(e, fe_id)}>
+                <div className={styles.components}>
+                  {generateComponent(item)}
+                </div>
+              </div>
+            </SortableItem>
+          )
+        })}
+      </div>
+    </SortableContainer>
   )
 }
 

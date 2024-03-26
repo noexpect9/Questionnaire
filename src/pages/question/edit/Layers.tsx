@@ -4,8 +4,10 @@ import classNames from "classnames";
 import styles from './Layers.module.scss'
 import { Button, Divider, Input, Space, message } from "antd";
 import { useDispatch } from "react-redux";
-import { changeSeletedId, changeTitle, toggleComponentHidden, toggleComponentLock } from "../../../store/componentsReducer";
+import { changeSeletedId, changeTitle, moveComponent, toggleComponentHidden, toggleComponentLock } from "../../../store/componentsReducer";
 import { EyeInvisibleOutlined, LockOutlined } from "@ant-design/icons";
+import SortableContainer from "../../../components/DragSortable/SortableContainer";
+import SortableItem from "../../../components/DragSortable/SortableItem";
 
 const Layers: FC = () => {
   const { componentList, selectedId } = useComponentsInfo()
@@ -33,8 +35,16 @@ const Layers: FC = () => {
     if (!value || !selectedId) return
     dispatch(changeTitle({ fe_id: selectedId, title: value }))
   }
+
+  // 需要补充id
+  const componentListWithId = componentList.map(item => ({ ...item, id: item.fe_id }))
+  // 拖拽排序结束
+  const handleDragEnd = (oldIndex: number, newIndex: number) => {
+    dispatch(moveComponent({ oldIndex, newIndex }))
+  }
+
   return (
-    <>
+    <SortableContainer items={componentListWithId} onDragEnd={handleDragEnd}>
       {componentList.map(item => {
         const { fe_id, title, isHidden, isLocked } = item
         // 拼接className
@@ -47,7 +57,7 @@ const Layers: FC = () => {
           [lockedClass]: isLocked
         })
         return (
-          <div key={fe_id}>
+          <SortableItem key={fe_id} id={fe_id}>
             <div className={styles.wrapper}>
               <div className={titleClass} onClick={() => handleTitleClick(fe_id)}>
                 {fe_id === currentTitleId && <Input style={{ width: '400px' }} value={title} onChange={(e) => handleChange(e)} onPressEnter={() => setCurrentTitleId('')} onBlur={() => setCurrentTitleId('')} />}
@@ -61,11 +71,10 @@ const Layers: FC = () => {
               </div>
             </div>
             <Divider className={styles.divider} />
-          </div>
-
+          </SortableItem>
         )
       })}
-    </>
+    </SortableContainer>
   )
 }
 
