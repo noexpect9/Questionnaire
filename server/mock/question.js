@@ -49,6 +49,9 @@ module.exports = [
         data: {
           _id: Mock.Random.guid(),
           title: Mock.Random.ctitle(10, 20),
+          description: Mock.Random.cparagraph(10, 20),
+          jsCode: '',
+          cssCode: '',
           isPubliced: Mock.Random.boolean(),
           isStar: Mock.Random.boolean(),
           answerCount: Mock.Random.integer(1, 3),

@@ -25,7 +25,7 @@ function useLoadUserInfo() {
       return
     }
     run()
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [username])
   return {
     wait
