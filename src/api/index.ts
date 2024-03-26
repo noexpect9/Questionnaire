@@ -48,3 +48,14 @@ export const findById = (id: string): Promise<Result> => {
     method: 'get',
   })
 }
+
+export const saveQuestion = (id: string, opt: any): Promise<Result> => {
+  return http.request({
+    url: `/question/${id}`,
+    method: 'put',
+    data: {
+      id,
+      ...opt
+    }
+  })
+}

@@ -40,6 +40,16 @@ module.exports = [
     },
   },
   {
+    url: '/api/question/:id',
+    method: 'put',
+    response() {
+      return {
+        code: 20000,
+        data: 'success',
+      }
+    },
+  },
+  {
     // 问卷详情
     url: '/api/question/detail/:id',
     method: 'get',
