@@ -48,7 +48,7 @@ module.exports = [
         code: 20000,
         data: {
           _id: Mock.Random.guid(),
-          title: Mock.Random.ctitle(10, 20),
+          title: Mock.Random.ctitle(0, 20),
           description: Mock.Random.cparagraph(10, 20),
           jsCode: '',
           cssCode: '',
