@@ -19,11 +19,14 @@
       .main {
         flex: auto;
         background-color: #fff;
-        margin: 15px;
+        padding: 20px;
+        margin: 0 15px;
+        border-radius: 5px;
       }
 
       .right {
         width: 600px;
+        border-radius: 5px;
       }
     }
   }
