@@ -1,0 +1,30 @@
+.contanier {
+  display: flex;
+  flex-direction: column;
+  background-color: #f2f2f2;
+  min-height: 100vh;
+
+  .content {
+    flex: auto;
+    padding: 15px 0;
+
+    .content-wrapper {
+      display: flex;
+      margin: 0 25px;
+
+      .left {
+        width: 500px;
+      }
+
+      .main {
+        flex: auto;
+        background-color: #fff;
+        margin: 15px;
+      }
+
+      .right {
+        width: 600px;
+      }
+    }
+  }
+}

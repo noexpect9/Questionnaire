@@ -5,6 +5,7 @@ export interface PageInfoState {
   description?: string
   jsCode?: string
   cssCode?: string
+  isPubliced?: boolean
 }
 
 const initPageInfoState: PageInfoState = {
@@ -12,6 +13,7 @@ const initPageInfoState: PageInfoState = {
   description: '',
   jsCode: '',
   cssCode: '',
+  isPubliced: true
 }
 
 

@@ -58,11 +58,11 @@ module.exports = [
         code: 20000,
         data: {
           _id: Mock.Random.guid(),
-          title: Mock.Random.ctitle(0, 20),
+          title: Mock.Random.ctitle(5),
           description: Mock.Random.cparagraph(10, 20),
           jsCode: '',
           cssCode: '',
-          isPubliced: Mock.Random.boolean(),
+          isPubliced: true,
           isStar: Mock.Random.boolean(),
           answerCount: Mock.Random.integer(1, 3),
           createTime: Mock.Random.date('yyyy-MM-dd HH:mm:ss'),
